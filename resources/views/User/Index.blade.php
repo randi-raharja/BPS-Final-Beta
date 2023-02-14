@@ -3,6 +3,9 @@
 @section('content')
     <div class="bg-white rounded-lg">
         <div class="p-8">
+            <div>
+                <canvas id="userChart"></canvas>
+            </div>
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-bold text-gray-700 hover:text-gray-600">
                     Users</h2>
@@ -92,3 +95,32 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        const ctx = document.getElementById('userChart');
+        const labels = Utils.months({
+            count: 7
+        });
+
+        new Chart(ctx, {
+            type: 'line',
+            labels: labels,
+            data: {
+                datasets: [{
+                    label: '# of Data',
+                    data: [1, 4, 6, 10, 60],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            // option: {
+            //     scale: {
+            //         y: {
+            //             beginAtZero: true
+            //         }
+            //     }
+            // }
+        });
+    </script>
+@endpush

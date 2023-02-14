@@ -39,6 +39,6 @@ class FeedbackController extends Controller
 
     public function export()
     {
-        return Excel::download(new FeedbackExport, date('Y-m-D').'-Feedback.xlsx');
+        return Excel::download(new FeedbackExport, date('Y-m-d').'-Feedback.xlsx');
     }
 }

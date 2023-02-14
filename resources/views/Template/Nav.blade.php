@@ -17,7 +17,7 @@
                 </label>
             </div>
             <div class="flex-1">
-                <a href="#" class="btn btn-ghost normal-case text-xl">BPS Banjarmasin</a>
+                <a href="/dashboard" class="btn btn-ghost normal-case text-xl">BPS Banjarmasin</a>
             </div>
             <div class="flex-none sm:flex hidden">
                 <ul class="menu menu-horizontal px-1">
@@ -34,20 +34,22 @@
                             <li><a href="{{ route('pengaduan.index') }}">Daftar Pengaduan</a></li>
                         </ul>
                     </li>
-                    <li tabindex="0">
-                        <a>
-                            Mitigasi
-                            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 24 24">
-                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                            </svg>
-                        </a>
-                        <ul class="p-2 bg-base-100">
-                            <li><a href="{{ route('mitigasi.create') }}">Buat Mitigasi</a></li>
-                            <li><a href="{{ route('mitigasi.index') }}">Data Mitigasi</a></li>
-                            <li><a href="{{ route('mitigasi.verif_index') }}">Verifikasi Mitigasi</a></li>
-                        </ul>
-                    </li>
+                    @can(App\Constants\Permissions::READ_MITIGASI)
+                        <li tabindex="0">
+                            <a>
+                                Mitigasi
+                                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24">
+                                    <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                                </svg>
+                            </a>
+                            <ul class="p-2 bg-base-100">
+                                <li><a href="{{ route('mitigasi.create') }}">Buat Mitigasi</a></li>
+                                <li><a href="{{ route('mitigasi.index') }}">Data Mitigasi</a></li>
+                                <li><a href="{{ route('mitigasi.verif_index') }}">Verifikasi Mitigasi</a></li>
+                            </ul>
+                        </li>
+                    @endcan
                     <li tabindex="0">
                         <a>
                             IKM
