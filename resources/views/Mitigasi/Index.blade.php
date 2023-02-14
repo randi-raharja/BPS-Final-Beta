@@ -8,12 +8,11 @@
                     Data Mitigasi</h2>
             </div>
             <div class="flex justify-between">
-                <form action="{{ route('mitigasi.create') }}" method="get">
-                    @csrf
-                    <button
-                        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Buat
-                        Mitigasi</button>
-                </form>
+                @can(App\Constants\Permissions::CREATE_MITIGASI)
+                    <a href="{{ route('mitigasi.create') }}" role="button"
+                        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                        Buat Mitigasi</a>
+                @endcan
                 <div>
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative">
@@ -86,23 +85,31 @@
                                 {{-- <td>{{ $mitigasi->kegiatan }}</td> --}}
                                 <td>
                                     <div class="flex gap-2">
-                                        <a href="{{ route('pengaduan.view', ['id' => $mitigasi->id]) }}" target="_blank"
-                                            rel="noopener noreferrer" role="button" class="btn btn-primary text-white"><i
-                                                class="fa-solid fa-eye"></i></a>
-                                        <a href="{{ route('mitigasi.edit', ['id' => $mitigasi->id]) }}" role="button"
-                                            class="btn btn-warning text-white"><i
-                                                class="fa-solid fa-pen-to-square"></i></i></a>
-                                        @if ($mitigasi->is_verif)
-                                            <a href="" role="button" target="_blank" rel="noopener noreferrer"
-                                                class="btn btn-info text-white"><i class="fa-solid fa-print"></i></a>
-                                        @endif
-                                        <form action="{{ route('mitigasi.destroy', $mitigasi->id) }}" method="post"
-                                            onsubmit="return confirm('Are you sure?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-error text-white"><i
-                                                    class="fa-solid fa-trash-can"></i></button>
-                                        </form>
+                                        @can(App\Constants\Permissions::READ_MITIGASI)
+                                            <a href="{{ route('pengaduan.view', ['id' => $mitigasi->id]) }}" target="_blank"
+                                                rel="noopener noreferrer" role="button" class="btn btn-primary text-white"><i
+                                                    class="fa-solid fa-eye"></i></a>
+                                        @endcan
+                                        @can(App\Constants\Permissions::UPDATE_MITIGASI)
+                                            <a href="{{ route('mitigasi.edit', ['id' => $mitigasi->id]) }}" role="button"
+                                                class="btn btn-warning text-white"><i
+                                                    class="fa-solid fa-pen-to-square"></i></i></a>
+                                        @endcan
+                                        @can(App\Constants\Permissions::UPDATE_VERIFIKASI)
+                                            @if ($mitigasi->is_verif)
+                                                <a href="" role="button" target="_blank" rel="noopener noreferrer"
+                                                    class="btn btn-info text-white"><i class="fa-solid fa-print"></i></a>
+                                            @endif
+                                        @endcan
+                                        @can(App\Constants\Permissions::DELETE_MITIGASI)
+                                            <form action="{{ route('mitigasi.destroy', $mitigasi->id) }}" method="post"
+                                                onsubmit="return confirm('Are you sure?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-error text-white"><i
+                                                        class="fa-solid fa-trash-can"></i></button>
+                                            </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

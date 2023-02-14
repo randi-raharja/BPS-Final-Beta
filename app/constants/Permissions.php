@@ -28,11 +28,18 @@ class Permissions
     // Verifikasi
     const UPDATE_VERIFIKASI = 'update_verifikasi';
 
+    // Print
+    const PRINT_MITIGASI = 'print_mitigasi';
+
     // Role
     const CREATE_ROLE = 'create_role';
     const READ_ROLE = 'read_role';
     const UPDATE_ROLE = 'update_role';
     const DELETE_ROLE = 'delete_role';
+
+    // IKM
+    const READ_IKM = 'read_ikm';
+    const EXPORT_IKM = 'export_ikm';
 
     public static function all()
     {
@@ -51,11 +58,16 @@ class Permissions
             self::UPDATE_ANSWER => 'Menjawab laporan masuk',
             // Verifikasi
             self::UPDATE_VERIFIKASI => 'Verifikasi data mitigasi',
+            // Print
+            self::PRINT_MITIGASI => 'Print data mitigasi',
             // Role
             self::CREATE_ROLE => 'Membuat role',
             self::READ_ROLE => 'Membaca data role',
             self::UPDATE_ROLE => 'Update role',
             self::DELETE_ROLE => 'Delete role',
+            // IKM
+            self::READ_IKM => 'Membaca data IKM',
+            self::EXPORT_IKM => 'Export data IKM',
         ]);
     }
 }

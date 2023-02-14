@@ -8,9 +8,11 @@
                     Roles</h2>
             </div>
             <div class="flex justify-between">
-                <a href="{{ route('users.role.create') }}" role="button"
-                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Tambah
-                    Role</a>
+                @can(App\Constants\Permissions::CREATE_ROLE)
+                    <a href="{{ route('users.role.create') }}" role="button"
+                        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Tambah
+                        Role</a>
+                @endcan
                 <div>
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative">
@@ -70,15 +72,19 @@
                                 <td>{{ $role->name }}</td>
                                 <td>
                                     <div class="flex gap-2">
-                                        <a href="{{ route('users.role.edit', ['id' => $role->id]) }}" role="button"
-                                            class="btn btn-primary text-white"><i class="fa-solid fa-pencil"></i></a>
-                                        <form action="{{ route('users.role.destroy', ['id' => $role->id]) }}" method="post"
-                                            onsubmit="return confirm('Are you sure?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-error text-white"><i
-                                                    class="fa-solid fa-trash-can"></i></button>
-                                        </form>
+                                        @can(App\Constants\Permissions::UPDATE_ROLE)
+                                            <a href="{{ route('users.role.edit', ['id' => $role->id]) }}" role="button"
+                                                class="btn btn-primary text-white"><i class="fa-solid fa-pencil"></i></a>
+                                        @endcan
+                                        @can(App\Constants\Permissions::DELETE_ROLE)
+                                            <form action="{{ route('users.role.destroy', ['id' => $role->id]) }}" method="post"
+                                                onsubmit="return confirm('Are you sure?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-error text-white"><i
+                                                        class="fa-solid fa-trash-can"></i></button>
+                                            </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

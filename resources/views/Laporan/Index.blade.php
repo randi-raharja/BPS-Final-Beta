@@ -84,9 +84,10 @@
                                                 rel="noopener noreferrer" role="button"
                                                 class="btn btn-primary text-white"><i class="fa-solid fa-eye"></i></a>
                                         @endif
-                                        <a href="{{ route('pengaduan.edit', ['id' => $item->id]) }}" role="button"
-                                            class="btn btn-warning text-white"><i class="fa-solid fa-paper-plane"></i></a>
-
+                                        @can(App\Constants\Permissions::UPDATE_ANSWER)
+                                            <a href="{{ route('pengaduan.edit', ['id' => $item->id]) }}" role="button"
+                                                class="btn btn-warning text-white"><i class="fa-solid fa-paper-plane"></i></a>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

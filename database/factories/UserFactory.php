@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $role = Role::where('name', 'default')->first();
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
@@ -25,6 +27,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'alamat' => fake()->address(),
             'no_hp' => fake()->phoneNumber(),
+            'role_id' => $role->id,
         ];
     }
 

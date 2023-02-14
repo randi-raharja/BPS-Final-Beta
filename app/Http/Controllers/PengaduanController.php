@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\constants\Permissions;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Pengaduan;
@@ -13,13 +14,10 @@ class PengaduanController extends Controller
 {
     public function index()
     {
-        // if (Gate::allows('C Answer')) {
-        //     $pengaduan = Pengaduan::all();
-        // } else {
-        //     $pengaduan = Pengaduan::where('user_id', auth()->id())->get();
-        // }
         $pengaduan = Pengaduan::all();
-
+        if (!Gate::allows(Permissions::UPDATE_ANSWER)) {
+            $pengaduan = Pengaduan::where('user_id', auth()->id())->get();
+        }
         return view('Laporan.Index', compact('pengaduan'));
     }
 
@@ -57,25 +55,28 @@ class PengaduanController extends Controller
 
     public function answer(Request $request, $id)
     {
+        if (!Gate::allows(Permissions::UPDATE_ANSWER)) {
+            return abort(403, 'RESTRICTED AREA');
+        }
         $pengaduan = Pengaduan::findOrFail($id);
-
+        
         $request->validate([
             'answer' => ['required']
         ]);
-
+        
         Answer::create([
             'pengaduan_id' => $pengaduan->id,
             'answer' => $request->answer,
             'user_id' => auth()->id(),
         ]);
-
+        
         return to_route('pengaduan.index')->with('status', 'Tanggapan berhasil diinputkan, terima kasih atas kerjasamanya');
     }
-
+    
     public function view($id)
     {
         $pengaduan = Pengaduan::findOrFail($id);
-
+        
         return view('Laporan.AfterAnswer', compact('pengaduan'));
     }
 }

@@ -13,7 +13,7 @@
                     <div class="w-full">
                         <label class="label" for="name">Nama</label>
                         <input type="text" id="name" name="name" placeholder="Nama Role"
-                            class="input input-bordered w-full" />
+                            class="input input-bordered w-full" value="{{ old('name') }}" />
                         @error('name')
                             <div class="alert mt-2 alert-error shadow-lg">
                                 <div>
@@ -30,7 +30,7 @@
                     <div class="w-full">
                         <label class="label" for="desc">Deskripsi</label>
                         <input type="text" id="desc" name="desc" placeholder="Deskripsi dari role"
-                            class="input input-bordered w-full" />
+                            class="input input-bordered w-full" value="{{ old('name') }}" />
                         @error('desc')
                             <div class="alert mt-2 alert-error shadow-lg">
                                 <div>
@@ -49,7 +49,9 @@
                         <div class="flex flex-wrap gap-4">
                             @foreach ($permissions as $permission)
                                 <div class="flex gap-2">
-                                    <input type="checkbox" name="permission_id[]" value="{{ $permission->id }}"
+                                    <input
+                                        {{ in_array($permission->id, old('permission_id', [])) ? 'checked="checked"' : '' }}
+                                        type="checkbox" name="permission_id[]" value="{{ $permission->id }}"
                                         class="checkbox checkbox-success" id="{{ $permission->id }}" />
                                     <label class="cursor-pointer"
                                         for="{{ $permission->id }}">{{ $permission->desc }}</label>
