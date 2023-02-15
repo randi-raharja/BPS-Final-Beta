@@ -86,19 +86,19 @@
                                 <td>
                                     <div class="flex gap-2">
                                         @can(App\Constants\Permissions::READ_MITIGASI)
-                                            <a href="{{ route('pengaduan.view', ['id' => $mitigasi->id]) }}" target="_blank"
+                                            <a href="{{ route('mitigasi.view', ['id' => $mitigasi->id]) }}" target="_blank"
                                                 rel="noopener noreferrer" role="button" class="btn btn-primary text-white"><i
                                                     class="fa-solid fa-eye"></i></a>
                                         @endcan
                                         @can(App\Constants\Permissions::UPDATE_MITIGASI)
                                             <a href="{{ route('mitigasi.edit', ['id' => $mitigasi->id]) }}" role="button"
-                                                class="btn btn-warning text-white"><i
-                                                    class="fa-solid fa-pen-to-square"></i></i></a>
+                                                class="btn btn-warning text-white"><i class="fa-solid fa-pen-to-square"></i></a>
                                         @endcan
-                                        @can(App\Constants\Permissions::UPDATE_VERIFIKASI)
+                                        @can(App\Constants\Permissions::PRINT_MITIGASI)
                                             @if ($mitigasi->is_verif)
-                                                <a href="" role="button" target="_blank" rel="noopener noreferrer"
-                                                    class="btn btn-info text-white"><i class="fa-solid fa-print"></i></a>
+                                                <a href="{{ route('mitigasi.print', ['id' => $mitigasi->id]) }}" role="button"
+                                                    target="_blank" rel="noopener noreferrer" class="btn btn-info text-white"><i
+                                                        class="fa-solid fa-print"></i></a>
                                             @endif
                                         @endcan
                                         @can(App\Constants\Permissions::DELETE_MITIGASI)

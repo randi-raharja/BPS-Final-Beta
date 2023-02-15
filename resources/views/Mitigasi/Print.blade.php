@@ -155,7 +155,7 @@
                         <td>Sumber Resiko</td>
                         <td>:</td>
                         <td>{{ $mitigasi->sumber->name }}</td>
-                    </tr>
+                </tr>
                     <tr>
                         <td>Solusi</td>
                         <td>:</td>
@@ -172,7 +172,7 @@
             <div style="display: flex; justify-content: end">
                 <div style="width: 300px; font-weight: bold; text-align: center;">
                     <div>Banjarmasin, {{ now()->isoFormat('DD MMMM Y') }}</div>
-                    <div>Kepala Pimpinan,</d>
+                    <div>{{ $mitigasi->verif_by_user->role->name }}</d>
                         <br><br><br><br><br><br>
                         <div style="text-decoration: underline; margin-bottom: 0; padding-bottom: 0;">
                             {{ $mitigasi->verif_by_user->name }}
@@ -186,7 +186,7 @@
     </div>
 
     <script>
-        window.print()
+        // window.print()
     </script>
 </body>
 

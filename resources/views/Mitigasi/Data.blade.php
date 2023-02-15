@@ -76,7 +76,7 @@
                                 {{-- <td>{{ $mitigasi->kegiatan }}</td> --}}
                                 <td>
                                     <div class="flex gap-2">
-                                        <a href="{{ route('pengaduan.view', ['id' => $mitigasi->id]) }}" target="_blank"
+                                        <a href="{{ route('mitigasi.view', ['id' => $mitigasi->id]) }}" target="_blank"
                                             rel="noopener noreferrer" role="button" class="btn btn-primary text-white"><i
                                                 class="fa-solid fa-eye"></i></a>
                                         <form action="{{ route('mitigasi.verif', ['id' => $mitigasi->id]) }}"

@@ -13,11 +13,20 @@ class MitigasiController extends Controller
 {
     public function index()
     {
-        if (!Gate::allows(Permissions::READ_MITIGASI)) {
-            return abort(403, 'RESTRICTED AREA');
-        }
         $mitigasis = Mitigasi::all();
+        if (!Gate::allows(Permissions::UPDATE_VERIFIKASI)) {
+            $mitigasis = Mitigasi::where('user_id', auth()->id())->get();
+        }
         return view('Mitigasi.index', compact('mitigasis'));
+    }
+
+    public function view($id)
+    {
+        $mitigasi = Mitigasi::findOrFail($id);
+        $fungsis = Fungsi::all();
+        $sumbers = Sumber::all();
+
+        return view('Mitigasi.View', compact('mitigasi', 'fungsis', 'sumbers'));
     }
 
     public function create()
@@ -120,7 +129,7 @@ class MitigasiController extends Controller
 
         $mitigasi->save();
 
-        return to_route('mitigasi.verif_index')->with('status', 'Data berhasil diverifikasi.W');
+        return to_route('mitigasi.verif_index')->with('status', 'Data berhasil diverifikasi');
     }
 
     public function print($id)

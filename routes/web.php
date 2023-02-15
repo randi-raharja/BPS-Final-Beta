@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MitigasiController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RoleController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,7 @@ Route::middleware('auth')->name('mitigasi.')->prefix('mitigasi')->group(function
     Route::get('/verifikasi', [MitigasiController::class, 'verif_index'])->name('verif_index');
     Route::post('/verifikasi/{id}', [MitigasiController::class, 'verif'])->name('verif');
     Route::get('/{id}/print', [MitigasiController::class, 'print'])->name('print');
+    Route::get('/{id}/view', [MitigasiController::class, 'view'])->name('view');
 });
 
 // IKM
@@ -90,4 +92,9 @@ Route::name('feedback.')->prefix('feedback')->group(function () {
     Route::get('/', [FeedbackController::class, 'form'])->name('form');
     Route::post('/', [FeedbackController::class, 'store'])->name('store');
     Route::get('/data/export', [FeedbackController::class, 'export'])->name('export');
+});
+
+Route::name('profile.')->prefix('pofile')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('index');
+    Route::get('/{id}/update', [ProfileController::class, 'edit'])->name('edit');
 });

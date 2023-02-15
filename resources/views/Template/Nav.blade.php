@@ -100,12 +100,13 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-40">
+                    <li class="menu-title "><a class="">{{ auth()->user()->name }}</a></li>
+                    <div class="divider m-0"></div>
                     <li>
-                        <a href="" class="justify-between">
+                        <a href="{{ route('profile.index') }}" class="justify-between">
                             Profile
                         </a>
                     </li>
-                    <li><a href="">Settings</a></li>
                     <li class=""></li>
                     <form action="/logout" method="POST">
                         @csrf
