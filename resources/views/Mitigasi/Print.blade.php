@@ -155,7 +155,7 @@
                         <td>Sumber Resiko</td>
                         <td>:</td>
                         <td>{{ $mitigasi->sumber->name }}</td>
-                </tr>
+                    </tr>
                     <tr>
                         <td>Solusi</td>
                         <td>:</td>
@@ -173,7 +173,8 @@
                 <div style="width: 300px; font-weight: bold; text-align: center;">
                     <div>Banjarmasin, {{ now()->isoFormat('DD MMMM Y') }}</div>
                     <div>{{ $mitigasi->verif_by_user->role->name }}</d>
-                        <br><br><br><br><br><br>
+                        <br>
+                        <img src="{{ route('userttd', ['id' => $mitigasi->verif_by_user->id]) }}" alt="">
                         <div style="text-decoration: underline; margin-bottom: 0; padding-bottom: 0;">
                             {{ $mitigasi->verif_by_user->name }}
                         </div>

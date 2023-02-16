@@ -41,6 +41,9 @@ class Permissions
     const READ_IKM = 'read_ikm';
     const EXPORT_IKM = 'export_ikm';
 
+    // NIDN
+    const UPDATE_NIDN = 'update_nidn';
+
     public static function all()
     {
         return collect([
@@ -68,6 +71,8 @@ class Permissions
             // IKM
             self::READ_IKM => 'Membaca data IKM',
             self::EXPORT_IKM => 'Export data IKM',
+            // NIDN
+            self::UPDATE_NIDN => 'Dapat menambahkan NIDN dan TTD',
         ]);
     }
 }

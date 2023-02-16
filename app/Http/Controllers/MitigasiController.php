@@ -137,6 +137,7 @@ class MitigasiController extends Controller
         if (!Gate::allows(Permissions::PRINT_MITIGASI)) {
             return abort(403, 'RESTRICTED AREA');
         }
+
         $mitigasi = Mitigasi::findOrFail($id);
         return view('Mitigasi.Print', compact('mitigasi'));
     }

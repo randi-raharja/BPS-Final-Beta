@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MitigasiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\User\ProfileController;
@@ -94,7 +95,10 @@ Route::name('feedback.')->prefix('feedback')->group(function () {
     Route::get('/data/export', [FeedbackController::class, 'export'])->name('export');
 });
 
+Route::get('/image/ttd/{id}', [ImageController::class, 'userttd'])->name('userttd');
+
 Route::name('profile.')->prefix('pofile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::get('/{id}/update', [ProfileController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [ProfileController::class, 'update'])->name('update');
 });
