@@ -2,11 +2,15 @@
 
 @section('content')
     <div class="flex flex-col gap-2">
-        <div class="bg-white rounded-lg">
-            <div class="p-8">
-                <div class="grid grid-cols-2 place-items-center">
-                    <div id="barchart_div" style="height: 600px; width: 600px"></div>
-                    <div id="donutchart" style="height: 600px; width: 600;"></div>
+        <div class="grid md:grid-cols-2 justify-items-stretch gap-2">
+            <div class="bg-white rounded-lg">
+                <div class="p-8">
+                    <canvas id="barchart_div"></canvas>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg">
+                <div class="p-8">
+                    <canvas id="donutchart"></canvas>
                 </div>
             </div>
         </div>
@@ -68,74 +72,52 @@
             </div>
         </div>
     </div>
-    </div>
 @endsection
 @push('js')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load("current", {
-            packages: ["corechart"]
-        });
-        google.charts.setOnLoadCallback(drawChart);
-        google.charts.setOnLoadCallback(bulan3);
+<script>
+        const ctx = document.getElementById('barchart_div');
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Penilaian', 'Jumlah'],
-                ['Bintang 1', {{ $rating1 }}],
-                ['Bintang 2', {{ $rating2 }}],
-                ['Bintang 3', {{ $rating3 }}],
-                ['Bintang 4', {{ $rating4 }}],
-                ['Bintang 5', {{ $rating5 }}]
-            ]);
-
-            var options = {
-                pieHole: 0.4,
-                legend: {
-                    position: 'bottom',
-                    maxLines: 3
-                },
-                width: 800,
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-            google.visualization.events.addListener(chart, 'ready', function() {
-                donutchart.innerHTML = '<img src="' + chart.getImageURI() + '">';
-                console.log(donutchart.innerHTML);
-            });
-            chart.draw(data, options);
-        }
-
-        function bulan3() {
-            var data = google.visualization.arrayToDataTable([
-                ['Bulan', 'Banyaknya Respone'],
-                ['{{ $pertama }}', {{ $bulan1 }}],
-                ['{{ $kedua }}', {{ $bulan2 }}],
-                ['{{ $ketiga }}', {{ $bulan3 }}],
-            ]);
-
-            var options = {
-                bars: 'vertical',
-                legend: {
-                    position: 'top',
-                    maxLines: 3
-                },
-                axes: {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['{{ $pertama }}', '{{ $kedua }}', '{{ $ketiga }}'],
+                datasets: [{
+                    label: 'Data reponden 3 bulan terakhir',
+                    data: [
+                        {{ $bulan1 }},
+                        {{ $bulan2 }},
+                        {{ $bulan3 }},
+                    ]
+                }]
+            },
+            options: {
+                scales: {
                     y: {
-                        0: {
-                            side: 'left'
-                        }
+                        beginAtZero: true
                     }
-                },
-                width: 600,
-            };
+                }
+            }
+        });
+    </script>
+    <script>
+        const rtx = document.getElementById('donutchart');
 
-            var chart = new google.visualization.ColumnChart(document.getElementById('barchart_div'));
-            google.visualization.events.addListener(chart, 'ready', function() {
-                barchart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
-                console.log(barchart_div.innerHTML);
-            });
-            chart.draw(data, options);
-        }
+        new Chart(rtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Bintang 1', 'Bintang 2', 'Bintang 3', 'Bintang 4', 'Bintang 5', ],
+                datasets: [{
+                    label: 'Penilaian berdasarkan responden',
+                    data: [
+                        {{ $rating1 }},
+                        {{ $rating2 }},
+                        {{ $rating3 }},
+                        {{ $rating4 }},
+                        {{ $rating5 }},
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+        });
     </script>
 @endpush

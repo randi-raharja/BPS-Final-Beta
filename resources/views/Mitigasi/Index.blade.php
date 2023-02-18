@@ -1,6 +1,12 @@
 @extends('Template.Main')
 
 @section('content')
+    {{-- Chart --}}
+    <div class="bg-white rounded-lg">
+        <div class="p-8">
+        </div>
+    </div>
+    {{-- Data --}}
     <div class="bg-white rounded-lg">
         <div class="p-8">
             <div class="flex items-center justify-between">
@@ -120,3 +126,13 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"
+        integrity="sha512-v3ygConQmvH0QehvQa6gSvTE2VdBZ6wkLOlmK7Mcy2mZ0ZF9saNbbk19QeaoTHdWIEiTlWmrwAL4hS8ElnGFbA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        
+    </script>
+@endpush
