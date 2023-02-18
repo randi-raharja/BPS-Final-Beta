@@ -22,4 +22,9 @@ class Pengaduan extends Model
     {
         return $this->hasOne(Answer::class, 'pengaduan_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

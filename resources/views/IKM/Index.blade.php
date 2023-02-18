@@ -74,7 +74,7 @@
     </div>
 @endsection
 @push('js')
-<script>
+    <script>
         const ctx = document.getElementById('barchart_div');
 
         new Chart(ctx, {
