@@ -4,11 +4,9 @@
     <div class="flex flex-col gap-2">
         <div class="bg-white rounded-lg">
             <div class="p-8">
-                <div class="w-40">
-                    <div class="grid grid-rows-2 grid-flow-col md:grid-rows-1">
-                        <div id="donutchart" class="bg-transparent" style="width: 400px; height: 500px;"></div>
-                        <div id="barchart_div" style="width: 900px; height: 500px;"></div>
-                    </div>
+                <div class="grid grid-cols-2 place-items-center">
+                    <div id="barchart_div" style="height: 600px; width: 600px"></div>
+                    <div id="donutchart" style="height: 600px; width: 600;"></div>
                 </div>
             </div>
         </div>
@@ -92,37 +90,52 @@
             ]);
 
             var options = {
-                title: 'Kepuasan Masyarakat',
                 pieHole: 0.4,
+                legend: {
+                    position: 'bottom',
+                    maxLines: 3
+                },
+                width: 800,
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            google.visualization.events.addListener(chart, 'ready', function() {
+                donutchart.innerHTML = '<img src="' + chart.getImageURI() + '">';
+                console.log(donutchart.innerHTML);
+            });
             chart.draw(data, options);
         }
 
         function bulan3() {
             var data = google.visualization.arrayToDataTable([
-                ['Month', 'value', {
-                    role: 'style'
-                }],
-                ['{{ $pertama }}', {{ $bulan1 }}, 'blue'],
-                ['{{ $kedua }}', {{ $bulan2 }}, 'green'],
-                ['{{ $ketiga }}', {{ $bulan3 }}, 'red'],
+                ['Bulan', 'Banyaknya Respone'],
+                ['{{ $pertama }}', {{ $bulan1 }}],
+                ['{{ $kedua }}', {{ $bulan2 }}],
+                ['{{ $ketiga }}', {{ $bulan3 }}],
             ]);
 
             var options = {
-                chart: {
-                    title: '3Bulan',
-                    subtitle: '3 Bulan',
+                bars: 'vertical',
+                legend: {
+                    position: 'top',
+                    maxLines: 3
                 },
-                bars: 'horizontal',
+                axes: {
+                    y: {
+                        0: {
+                            side: 'left'
+                        }
+                    }
+                },
                 width: 600,
-                height: 500,
             };
 
-            var chart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+            var chart = new google.visualization.ColumnChart(document.getElementById('barchart_div'));
+            google.visualization.events.addListener(chart, 'ready', function() {
+                barchart_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+                console.log(barchart_div.innerHTML);
+            });
             chart.draw(data, options);
         }
-
     </script>
 @endpush
