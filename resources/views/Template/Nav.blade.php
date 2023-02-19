@@ -1,9 +1,9 @@
-<div class="drawer">
+<div class="drawer " style="height: auto !important">
     {{-- Toggle --}}
     <input type="checkbox" id="sidebar" class="drawer-toggle">
 
     {{-- COntent --}}
-    <div class="drawer-content flex flex-col">
+    <div class="drawer-content">
         <div class="navbar z-40 bg-base-100">
             {{-- Toggle --}}
             <div class="flex-none sm:hidden">

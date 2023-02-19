@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\constants\Permissions;
 use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Feedback;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -52,6 +53,14 @@ class PengaduanController extends Controller
             'kate5' => $kate5,
         ];
         return view('Laporan.Index', $data);
+    }
+
+    public function search(Request $request)
+    {
+        $text = $request->input('text');
+        $hope = Pengaduan::where('no_ticket', 'like', $text)->get();
+
+        return response()->json($hope);
     }
 
     public function create()
