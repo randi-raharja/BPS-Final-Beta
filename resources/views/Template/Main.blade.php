@@ -7,7 +7,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Flowtrail UI Navbar</title>
+    <title>BPS Banjarmasin</title>
+    <!-- Favicons -->
+    <link href="{!! asset('/assets/img/logo-BPS.svg') !!}" rel="icon">
+    <link href="{!! asset('/assets/img/apple-touch-icon.png') !!}" rel="apple-touch-icon">
     {{-- @vite('resources/css/app.css') --}}
     @livewireStyles
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.0/dist/full.css" rel="stylesheet" type="text/css" />

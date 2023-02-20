@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
@@ -19,6 +20,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        $role = Role::where('name', 'default')->first();
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email:dns', 'unique:users,email'],
@@ -33,6 +35,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
+            'role_id' => $role->id,
         ]);
 
         event(new Registered($user));

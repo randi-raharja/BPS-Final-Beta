@@ -10,6 +10,8 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RoleController;
 use App\Http\Controllers\User\UserController;
+use App\Models\Faq;
+use App\Models\Identity;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +26,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        $faq = Faq::all(),
+        'faq' => $faq,
+        $tittle = 'Home',
+        'tittle' => $tittle,
+        $identity = Identity::all(),
+        'identity' => $identity,
+    ]);
 });
 
 Route::middleware('guest')->group(function () {
@@ -97,7 +106,7 @@ Route::name('feedback.')->prefix('feedback')->group(function () {
 
 Route::get('/image/ttd/{id}', [ImageController::class, 'userttd'])->name('userttd');
 
-Route::name('profile.')->prefix('pofile')->group(function () {
+Route::middleware('auth')->name('profile.')->prefix('pofile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::get('/{id}/update', [ProfileController::class, 'edit'])->name('edit');
     Route::put('/{id}', [ProfileController::class, 'update'])->name('update');
