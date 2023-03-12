@@ -1,5 +1,5 @@
 @extends('Template.Main')
 
 @section('content')
-    <livewire:mitigasi />
+    <livewire:verif />
 @endsection

@@ -12,7 +12,7 @@
         </div>
         <div class="card w-full bg-base-100 shadow-xl">
             <div class="card-body">
-                <h2 class="card-title">Data Pengadun</h2>
+                <h2 class="card-title">Data Pengaduan</h2>
                 <p>Lihat laporan yang sudah diinputkan</p>
                 <div class="card-actions justify-end">
                     <a href="{{ route('pengaduan.index') }}" class="btn btn-primary" role="button">Click it!</a>

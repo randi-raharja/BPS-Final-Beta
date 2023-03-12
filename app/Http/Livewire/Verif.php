@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Mitigasi as ModelsMitigasi;
+use App\Models\Mitigasi;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Mitigasi extends Component
+class Verif extends Component
 {
     use WithPagination;
 
@@ -26,7 +26,7 @@ class Mitigasi extends Component
 
     public function render()
     {
-        $query = ModelsMitigasi::query();
+        $query = Mitigasi::query()->where('is_verif', false);
 
         if ($this->search != '') {
             $query->where('kegiatan', 'like', '%' . $this->search . '%');
@@ -39,7 +39,7 @@ class Mitigasi extends Component
 
         $mitigasis = $query->paginate(15);
 
-        return view('livewire.mitigasi', [
+        return view('livewire.verif', [
             'mitigasis' => $mitigasis,
         ]);
     }

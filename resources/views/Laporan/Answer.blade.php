@@ -15,8 +15,7 @@
                 <div class="gap-2 flex flex-col">
                     <div class="w-full">
                         <label for="isi">Isi Laporan</label>
-                        <textarea id="isi" name="isi" class="h-48 disabled resize-none textarea textarea-bordered w-full"
-                            readonly>{{ $pengaduan->isi }}</textarea>
+                        <textarea id="isi" name="isi" class="h-48 disabled resize-none textarea textarea-bordered w-full" readonly>{{ $pengaduan->isi }}</textarea>
                     </div>
                 </div>
                 <div class="gap-2 flex flex-col">

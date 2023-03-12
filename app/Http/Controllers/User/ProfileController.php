@@ -31,7 +31,7 @@ class ProfileController extends Controller
             'no_hp' => ['required'],
             'alamat' => ['required'],
         ];
-        if (!Gate::allows(Permissions::UPDATE_NIDN)) {
+        if (Gate::allows(Permissions::UPDATE_NIDN)) {
             $rules['nidn'] = ['required'];
             $rules['ttd'] = ['required', 'image', 'max:1024'];
         }
@@ -41,11 +41,16 @@ class ProfileController extends Controller
         if ($request->has('ttd')) {
             $path = $request->file('ttd')->store('image/ttd');
         }
+
+        $nidn = NULL;
+        if (isset($validate["nidn"])) {
+            $nidn = $validate["nidn"];
+        }
         $user->forceFill([
             'name' => $validate['name'],
             'no_hp' => $validate['no_hp'],
             'alamat' => $validate['alamat'],
-            'nidn' => $validate['nidn'],
+            'nidn' => $nidn,
             'ttd' => $path,
         ])->save();
 

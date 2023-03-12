@@ -40,6 +40,8 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        return redirect('/login')->with('status', 'Akun terdaftar, silahkan login!');
+        auth()->login($user);
+
+        return to_route('verification.notice')->with('status', 'Akun terdaftar, silahkan login!');
     }
 }

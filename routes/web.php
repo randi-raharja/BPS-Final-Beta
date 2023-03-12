@@ -10,6 +10,7 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RoleController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\VerificationController;
 use App\Models\Faq;
 use App\Models\Identity;
 use Illuminate\Support\Facades\Route;
@@ -43,13 +44,18 @@ Route::middleware('guest')->group(function () {
 
     // Register
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 });
 
-Route::middleware('auth')->group(function () {
+// Email Verification
+Route::get('/verify', [VerificationController::class, 'verify'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'emailverif'])->middleware(['auth', 'signed'])->middleware('auth')->name('verification.verify');
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('Dashboard');
-    });
+    })->name('dashboard');
     // Logout
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
@@ -58,7 +64,7 @@ Route::middleware('auth')->name('users.')->prefix('users')->group(function () {
     // Role
     Route::get('/roles', [RoleController::class, 'index'])->name('role.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('role.create');
-    Route::post('/roles/', [RoleController::class, 'store'])->name('role.store');
+    Route::post('/roles', [RoleController::class, 'store'])->name('role.store');
     Route::get('/roles/{id}/edit', [RoleController::class, 'edit'])->name('role.edit');
     Route::put('/roles/{id}', [RoleController::class, 'update'])->name('role.update');
     Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
@@ -106,7 +112,7 @@ Route::name('feedback.')->prefix('feedback')->group(function () {
 
 Route::get('/image/ttd/{id}', [ImageController::class, 'userttd'])->name('userttd');
 
-Route::middleware('auth')->name('profile.')->prefix('pofile')->group(function () {
+Route::middleware('auth')->name('profile.')->prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::get('/{id}/update', [ProfileController::class, 'edit'])->name('edit');
     Route::put('/{id}', [ProfileController::class, 'update'])->name('update');

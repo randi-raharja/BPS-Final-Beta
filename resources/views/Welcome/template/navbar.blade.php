@@ -18,10 +18,6 @@
                 <ul>
                     <li><a class="nav-link scrollto {{ $tittle == '| Home' ? 'active' : '' }}" href="/">Home</a>
                     </li>
-                    <li><a class="nav-link scrollto {{ $tittle == '| Blog' ? 'active' : '' }}" href="/blog">Blog</a>
-                    </li>
-                    <li><a class="nav-link scrollto {{ $tittle == '| Tracking' ? 'active' : '' }}"
-                            href="/laporan">Tracking Laporan</a></li>
                     @auth
                         <a href="{{ url('/dashboard') }}"
                             class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>

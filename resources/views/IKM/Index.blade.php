@@ -30,9 +30,9 @@
                         <!-- head -->
                         <thead>
                             <tr>
-                                <th>Nama Kegiatan</th>
-                                <th>Fungsi</th>
-                                <th>Pembuat</th>
+                                <th>Kritik</th>
+                                <th>Saran</th>
+                                <th>Rating</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,81 +43,80 @@
                                         <div class="break-normal whitespace-normal">
                                             {{ $feedback->kritik }}
                                     </td>
-                </div>
-                <td>
-                    <div class="break-normal whitespace-normal">
-                        {{ $feedback->saran }}
-                    </div>
-                </td>
-                <td>
-                    <div class="rating  items-center">
-                        <input disabled type="radio" {{ $feedback->rating == 1 ? 'checked' : '' }}
-                            name="rating-{{ $feedback->id }}" class="mask mask-star" />
-                        <input disabled type="radio" {{ $feedback->rating == 2 ? 'checked' : '' }}
-                            name="rating-{{ $feedback->id }}" class="mask mask-star" />
-                        <input disabled type="radio" {{ $feedback->rating == 3 ? 'checked' : '' }}
-                            name="rating-{{ $feedback->id }}" class="mask mask-star" />
-                        <input disabled type="radio" {{ $feedback->rating == 4 ? 'checked' : '' }}
-                            name="rating-{{ $feedback->id }}" class="mask mask-star" />
-                        <input disabled type="radio" {{ $feedback->rating == 5 ? 'checked' : '' }}
-                            name="rating-{{ $feedback->id }}" class="mask mask-star" />
-                    </div>
+                                    <td>
+                                        <div class="break-normal whitespace-normal">
+                                            {{ $feedback->saran }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="rating  items-center">
+                                            <input disabled type="radio" {{ $feedback->rating == 1 ? 'checked' : '' }}
+                                                name="rating-{{ $feedback->id }}" class="mask mask-star" />
+                                            <input disabled type="radio" {{ $feedback->rating == 2 ? 'checked' : '' }}
+                                                name="rating-{{ $feedback->id }}" class="mask mask-star" />
+                                            <input disabled type="radio" {{ $feedback->rating == 3 ? 'checked' : '' }}
+                                                name="rating-{{ $feedback->id }}" class="mask mask-star" />
+                                            <input disabled type="radio" {{ $feedback->rating == 4 ? 'checked' : '' }}
+                                                name="rating-{{ $feedback->id }}" class="mask mask-star" />
+                                            <input disabled type="radio" {{ $feedback->rating == 5 ? 'checked' : '' }}
+                                                name="rating-{{ $feedback->id }}" class="mask mask-star" />
+                                        </div>
 
-                </td>
-                </tr>
-                @endforeach
-                </tbody>
-                </table>
-                {{ $feedbacks->links() }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $feedbacks->links() }}
+                </div>
             </div>
         </div>
-    </div>
-@endsection
-@push('js')
-    <script>
-        const ctx = document.getElementById('barchart_div');
+    @endsection
+    @push('js')
+        <script>
+            const ctx = document.getElementById('barchart_div');
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['{{ $pertama }}', '{{ $kedua }}', '{{ $ketiga }}'],
-                datasets: [{
-                    label: 'Data reponden 3 bulan terakhir',
-                    data: [
-                        {{ $bulan1 }},
-                        {{ $bulan2 }},
-                        {{ $bulan3 }},
-                    ]
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['{{ $pertama }}', '{{ $kedua }}', '{{ $ketiga }}'],
+                    datasets: [{
+                        label: 'Data reponden 3 bulan terakhir',
+                        data: [
+                            {{ $bulan1 }},
+                            {{ $bulan2 }},
+                            {{ $bulan3 }},
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-    </script>
-    <script>
-        const rtx = document.getElementById('donutchart');
+            });
+        </script>
+        <script>
+            const rtx = document.getElementById('donutchart');
 
-        new Chart(rtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Bintang 1', 'Bintang 2', 'Bintang 3', 'Bintang 4', 'Bintang 5', ],
-                datasets: [{
-                    label: 'Penilaian berdasarkan responden',
-                    data: [
-                        {{ $rating1 }},
-                        {{ $rating2 }},
-                        {{ $rating3 }},
-                        {{ $rating4 }},
-                        {{ $rating5 }},
-                    ],
-                    hoverOffset: 4
-                }]
-            },
-        });
-    </script>
-@endpush
+            new Chart(rtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Bintang 1', 'Bintang 2', 'Bintang 3', 'Bintang 4', 'Bintang 5', ],
+                    datasets: [{
+                        label: 'Penilaian berdasarkan responden',
+                        data: [
+                            {{ $rating1 }},
+                            {{ $rating2 }},
+                            {{ $rating3 }},
+                            {{ $rating4 }},
+                            {{ $rating5 }},
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+            });
+        </script>
+    @endpush

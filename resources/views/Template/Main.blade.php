@@ -11,10 +11,10 @@
     <!-- Favicons -->
     <link href="{!! asset('/assets/img/logo-BPS.svg') !!}" rel="icon">
     <link href="{!! asset('/assets/img/apple-touch-icon.png') !!}" rel="apple-touch-icon">
-    {{-- @vite('resources/css/app.css') --}}
+    @vite('resources/css/app.css')
     @livewireStyles
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.0/dist/full.css" rel="stylesheet" type="text/css" /> --}}
+    {{-- <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             daisyui: {
@@ -25,7 +25,7 @@
                 extend: {},
             },
         }
-    </script>
+    </script> --}}
     @stack('css')
 </head>
 

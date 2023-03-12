@@ -80,19 +80,23 @@
             <tr>
                 <td class="logo">
                     <div class="logo-left">
-                        <img class="logo-image" src="https://ruangdeveloper.000webhostapp.com/assets/img/kapuas.png"
-                            alt="Logo">
+                        <img class="logo-image" src="{!! asset('/assets/img/logo-BPS.svg') !!}" alt="Logo">
                     </div>
                 </td>
                 <td>
                     <div class="header">
                         <div style="text-transform: uppercase;">
-                            PEMERINTAH KABUPATEN KAPUAS
+                            PEMERINTAH KOTA BANJARMASIN
                         </div>
                         <div style="font-weight: bold; text-transform: uppercase;">
-                            BADAN PENGELOLA KEUANGAN DAN ASET DAERAH
+                            BADAN PUSAT STATISTIK KOTA BANJARMASIN
                         </div>
-                        <small style="font-size: 12px;">Jl. Pemuda Km 5,5 Telp. (0513) 21007 Kuala Kapuas</small>
+                        <small style="font-size: 12px;">Jalan Gatot Subroto No. 5 Banjarmasin,Kota Banjarmasin,
+                            Kalimantan Selatan
+                            Indonesia, 70235</small>
+                        <div style="font-size: 12px;">
+                            Telp: (0511) 6773031, 6773932, Email: bps6371@bps.go.id, bps6371@gmail.com
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -110,7 +114,7 @@
             </div>
 
             <div>
-                ini teks atas
+                Berikut ini merupakan hasil laporan mitigasi.
             </div>
 
             <div style="margin-bottom: 1rem;">
@@ -165,7 +169,7 @@
             </div>
 
             <div>
-                ini teks atas
+                Semua data diatas sudah data yang valid dan sudah terverifikasi oleh verifikator yang mana bertanda tangan di bawah ini.
             </div>
 
             {{-- TTD --}}
@@ -174,11 +178,11 @@
                     <div>Banjarmasin, {{ now()->isoFormat('DD MMMM Y') }}</div>
                     <div>{{ $mitigasi->verif_by_user->role->name }}</d>
                         <br>
-                        <img src="{{ route('userttd', ['id' => $mitigasi->verif_by_user->id]) }}" alt="">
+                        <img width="200px" src="{{ route('userttd', ['id' => $mitigasi->verif_by_user->id]) }}" alt="">
                         <div style="text-decoration: underline; margin-bottom: 0; padding-bottom: 0;">
                             {{ $mitigasi->verif_by_user->name }}
                         </div>
-                        <div>NIP. 000000000000000000</div>
+                        <div>NIP. {{ $mitigasi->verif_by_user->nidn }}</div>
                     </div>
                 </div>
             </div>
@@ -187,7 +191,7 @@
     </div>
 
     <script>
-        // window.print()
+        window.print()
     </script>
 </body>
 

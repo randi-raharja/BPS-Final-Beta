@@ -55,14 +55,6 @@ class PengaduanController extends Controller
         return view('Laporan.Index', $data);
     }
 
-    public function search(Request $request)
-    {
-        $text = $request->input('text');
-        $hope = Pengaduan::where('no_ticket', 'like', $text)->get();
-
-        return response()->json($hope);
-    }
-
     public function create()
     {
         $categories = Category::all();
@@ -91,8 +83,9 @@ class PengaduanController extends Controller
     public function edit($id)
     {
         $pengaduan = Pengaduan::findOrFail($id);
+        $answer = Answer::all();
 
-        return view('Laporan.Answer', compact('pengaduan'));
+        return view('Laporan.Answer', compact('pengaduan', 'answer'));
     }
 
     public function answer(Request $request, $id)
