@@ -15,18 +15,20 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('Auth.Register');
+        $title = 'BPS Banjarmasin | Register';
+        return view('Auth.Register', compact('title'));
     }
 
     public function store(Request $request)
     {
-        $role = Role::where('name', 'default')->first();
+        $role = Role::where('name', 'pelapor')->first();
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email:dns', 'unique:users,email'],
             'password' => ['required', 'confirmed', 'min:8', 'max:30', Rules\Password::defaults()],
             'alamat' => ['required'],
             'no_hp' => ['required'],
+            'wa' => ['required'],
         ]);
 
         $user = User::create([
@@ -35,6 +37,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
+            'wa' => $request->wa,
             'role_id' => $role->id,
         ]);
 

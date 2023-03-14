@@ -10,7 +10,8 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('Auth.Login');
+        $title = 'BPS Banjarmasin | Login';
+        return view('Auth.Login', compact('title'));
     }
 
     public function auth(Request $request)
@@ -24,6 +25,8 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');
+        } else {
+            return back()->with('loginError', 'Check your email or password!');
         }
     }
 }

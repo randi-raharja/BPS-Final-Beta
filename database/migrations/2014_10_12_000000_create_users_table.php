@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('nidn')->nullable();
             $table->string('alamat');
             $table->string('no_hp');
+            $table->string('wa');
             $table->rememberToken();
             $table->timestamps();
         });

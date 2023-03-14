@@ -40,7 +40,7 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     // Login
     Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'auth'])->name('login');
+    Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
 
     // Register
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
