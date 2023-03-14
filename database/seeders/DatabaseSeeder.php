@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $this->call(DropSeeder::class);
         $this->call(RoleSeeder::class);
-        User::created([]);
+        $this->call(AdminSeeder::class);
         // \App\Models\User::factory(50)->create();
 
     }

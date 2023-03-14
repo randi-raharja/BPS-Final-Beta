@@ -40,11 +40,11 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     // Login
     Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
+    Route::post('/login', [LoginController::class, 'auth'])->name('login');
 
     // Register
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register');
 });
 
 // Email Verification

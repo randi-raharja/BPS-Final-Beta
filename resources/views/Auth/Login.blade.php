@@ -1,7 +1,7 @@
 @extends('Auth.Template.Main')
 @section('content')
     <div class="hero min-h-screen">
-        <form action="{{ route('login.auth') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             @if (session('loginError'))
                 <div class="alert alert-error shadow-lg">

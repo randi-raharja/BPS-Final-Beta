@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="hero min-h-screen">
-        <form action="{{ route('register.store') }}" method="post">
+        <form action="{{ route('register') }}" method="post">
             @csrf
 
             <div class="card w-full shadow-2xl bg-base-100">

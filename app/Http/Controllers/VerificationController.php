@@ -9,7 +9,8 @@ class VerificationController extends Controller
 {
     public function verify()
     {
-        return view('Auth.Verif');
+        $title = 'Check your email';
+        return view('Auth.Verif', compact('title'));
     }
 
     public function emailverif(EmailVerificationRequest $emailVerificationRequest)
