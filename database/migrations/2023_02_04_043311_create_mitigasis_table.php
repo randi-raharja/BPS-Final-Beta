@@ -25,7 +25,10 @@ return new class extends Migration
             $table->string('risk');
             $table->string('sebab');
             $table->foreignIdFor(Sumber::class);
-            $table->string('solusi');
+            $table->string('dampak');
+            $table->string('nilai_peluang');
+            $table->string('nilai_dampak');
+            $table->string('mitigasi');
             $table->timestamps();
             $table->boolean('is_verif')->default(false);
         });

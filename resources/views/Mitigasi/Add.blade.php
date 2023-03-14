@@ -105,13 +105,11 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
-                    <div class="flex-1">
                         <div class="w-full">
-                            <label class="label" for="solusi">Solusi</label>
-                            <textarea id="solusi" name="solusi" class="h-48 resize-none textarea textarea-bordered w-full"
-                                placeholder="Masukan solusi anda disini"></textarea>
-                            @error('solusi')
+                            <label class="label" for="dampak">Dampak</label>
+                            <input type="text" id="dampak" name="dampak" placeholder="Dampak"
+                                class="input input-bordered w-full" />
+                            @error('dampak')
                                 <div class="alert mt-2 alert-error shadow-lg">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
@@ -123,6 +121,76 @@
                                     </div>
                                 </div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="w-full">
+                            <label class="label" for="nilai_peluang">Sebab</label>
+                            <input type="range" name="nilai_peluang" min="0" max="100" value="25"
+                                class="range" step="25" />
+                            <div class="w-full flex justify-between text-xs px-2">
+                                <span>1</span>
+                                <span>2</span>
+                                <span>3</span>
+                                <span>4</span>
+                                <span>5</span>
+                            </div>
+                            @error('nilai_peluang')
+                                <div class="alert mt-2 alert-error shadow-lg">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
+                                            fill="none" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>{{ $message }}</span>
+                                    </div>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="w-full">
+                            <label class="label" for="nilai_dampak">Sebab</label>
+                            <input type="range" min="0" name="nilai_dampak" max="100" value="25"
+                                class="range" step="25" />
+                            <div class="w-full flex justify-between text-xs px-2">
+                                <span>1</span>
+                                <span>2</span>
+                                <span>3</span>
+                                <span>4</span>
+                                <span>5</span>
+                            </div>
+                            @error('nilai_dampak')
+                                <div class="alert mt-2 alert-error shadow-lg">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
+                                            fill="none" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span>{{ $message }}</span>
+                                    </div>
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="flex-1">
+                            <div class="w-full">
+                                <label class="label" for="mitigasi">Mitigasi</label>
+                                <textarea id="mitigasi" name="mitigasi" class="h-48 resize-none textarea textarea-bordered w-full"
+                                    placeholder="Masukan mitigasi anda disini"></textarea>
+                                @error('mitigasi')
+                                    <div class="alert mt-2 alert-error shadow-lg">
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <span>{{ $message }}</span>
+                                        </div>
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>

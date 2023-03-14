@@ -2,74 +2,74 @@
 
 @section('content')
     {{-- Chart --}}
-        @can(App\Constants\Permissions::UPDATE_VERIFIKASI)
-            <div class="grid md:grid-cols-2 justify-items-stretch gap-2 mb-2">
-                <div class="rounded-lg">
-                    <div class="gap-2 flex flex-col">
-                        <div class="bg-white rounded-lg">
-                            <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
-                                Data Mitigasi berdasarkan fungsi</h2>
-                            <div class="divider"></div>
-                            <div class="p-8 gap-2 items-center">
-                                <div class="w-11/12 h-1/2">
-                                    <canvas id="fungsi"></canvas>
-                                </div>
+    @can(App\Constants\Permissions::UPDATE_VERIFIKASI)
+        <div class="flex flex-col  gap-2 mb-2">
+            <div class="gap-4 flex flex-col">
+                <div class="flex gap-4">
+                    <div class="bg-white rounded-lg flex-1">
+                        <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
+                            Data Mitigasi berdasarkan fungsi</h2>
+                        <div class="divider"></div>
+                        <div class="p-8 gap-2 items-center">
+                            <div class="w-11/12 h-1/2">
+                                <canvas id="fungsi"></canvas>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg">
-                            <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
-                                Data Mitigasi berdasarkan fungsi (Doughnut Chart)</h2>
-                            <div class="divider"></div>
-                            <div class="p-8 gap-2 items-center">
-                                <div class="w-full h-1/4">
-                                    <canvas id="fungsi_dn"></canvas>
-                                </div>
+                    </div>
+                    <div class="bg-white rounded-lg">
+                        <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
+                            Data Mitigasi berdasarkan fungsi (Doughnut Chart)</h2>
+                        <div class="divider"></div>
+                        <div class="p-8 gap-2 items-center">
+                            <div class="w-full h-1/4">
+                                <canvas id="fungsi_dn"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="rounded-lg">
-                    <div class="gap-2 flex flex-col">
-                        <div class="bg-white rounded-lg">
-                            <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
-                                Data Mitigasi 6 Bulan Terakhir</h2>
-                            <div class="divider"></div>
-                            <div class="p-8 gap-2 items-center">
-                                <div class="w-11/12 h-1/2">
-                                    <canvas id="mitigasi"></canvas>
-                                </div>
+                <div class="flex gap-4 w-full">
+                    <div class="bg-white rounded-lg flex-1">
+                        <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
+                            Data Mitigasi 6 Bulan Terakhir</h2>
+                        <div class="divider"></div>
+                        <div class="p-8 gap-2 items-center">
+                            <div class="w-11/12 h-1/2">
+                                <canvas id="mitigasi"></canvas>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg">
-                            <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
-                                Data Mitigasi 3 Bulan Terakhir</h2>
-                            <div class="divider"></div>
-                            <div class="p-8 gap-2 items-center">
-                                <div class="w-full h-1/2">
-                                    <canvas id="mb"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <div class="p-8">
-                                <h2>Data yang sudah terverifikasi :</h2>
-                                <span class="text-3xl font-bold"><i
-                                        class="mr-2 text-green-500 fa-solid fa-square-check"></i>{{ $verif_on }}</span>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <div class="p-8">
-                                <h2>Data yang belum terverifikasi :</h2>
-                                <span class="text-3xl font-bold"><i
-                                        class="mr-2 text-red-500 fa-solid fa-square-xmark"></i>{{ $verif_off }}</span>
+                    </div>
+                    <div class="bg-white rounded-lg flex-1">
+                        <h2 class="text-xl ml-4 mt-4 font-bold text-gray-700 hover:text-gray-600">
+                            Data Mitigasi 3 Bulan Terakhir</h2>
+                        <div class="divider"></div>
+                        <div class="p-8 gap-2 items-center">
+                            <div class="w-full h-1/2">
+                                <canvas id="mb"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        @endcan
-        {{-- Data --}}
-        <livewire:mitigasi />
+            <div class="gap-4 flex w-full justify-between">
+                <div class="bg-white rounded-lg w-full">
+                    <div class="p-8">
+                        <h2>Data yang sudah terverifikasi :</h2>
+                        <span class="text-3xl font-bold"><i
+                                class="mr-2 text-green-500 fa-solid fa-square-check"></i>{{ $verif_on }}</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg w-full">
+                    <div class="p-8">
+                        <h2>Data yang belum terverifikasi :</h2>
+                        <span class="text-3xl font-bold"><i
+                                class="mr-2 text-red-500 fa-solid fa-square-xmark"></i>{{ $verif_off }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endcan
+    {{-- Data --}}
+    <livewire:mitigasi />
 @endsection
 @push('js')
     {{-- Mitigasi Masuk --}}

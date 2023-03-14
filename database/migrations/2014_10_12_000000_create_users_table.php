@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignIdFor(Role::class)->nullable();
             $table->string('ttd')->nullable();
-            $table->string('nidn')->nullable();
+            $table->string('nip')->nullable();
             $table->string('alamat');
             $table->string('no_hp');
             $table->string('wa');
