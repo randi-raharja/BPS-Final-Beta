@@ -86,6 +86,7 @@ Route::middleware('auth')->name('pengaduan.')->prefix('pengaduan')->group(functi
     Route::get('/{id}/edit', [PengaduanController::class, 'edit'])->name('edit');
     Route::post('/{id}', [PengaduanController::class, 'answer'])->name('answer');
     Route::get('{id}/view', [PengaduanController::class, 'view'])->name('view');
+    Route::get('/print', [PengaduanController::class, 'print'])->name('print');
 });
 
 // Mitigasi

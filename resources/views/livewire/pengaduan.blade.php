@@ -3,6 +3,9 @@
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-bold text-gray-700 hover:text-gray-600">
                 Daftar Pengaduan</h2>
+            @can(App\Constants\Permissions::UPDATE_ANSWER)
+                <a target="_blank" href="{{ route('pengaduan.print') }}">Print</a>
+            @endcan
         </div>
         <div class="flex justify-between">
             <form action="{{ route('pengaduan.create') }}" method="get">

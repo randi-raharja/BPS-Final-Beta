@@ -137,4 +137,44 @@ class PengaduanController extends Controller
 
         return view('Laporan.AfterAnswer', compact('pengaduan'));
     }
+
+    public function print()
+    {
+        // Carbon function
+        $now = Carbon::now();
+        $satu = $now->isoFormat('MMMM Y');
+        $now2 = Carbon::now()->subMonth(1);
+        $dua = $now2->isoFormat('MMMM Y');
+        $now3 = Carbon::now()->subMonth(2);
+        $tiga = $now3->isoFormat('MMMM Y');
+
+        $bulan1 = Pengaduan::query()->whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->count();
+        $bulan2 = Pengaduan::query()->whereMonth('created_at', $now2->month)->whereYear('created_at', $now2->year)->count();
+        $bulan3 = Pengaduan::query()->whereMonth('created_at', $now3->month)->whereYear('created_at', $now3->year)->count();
+
+        $kate1 = Pengaduan::query()->where('category_id', 1)->count();
+        $kate2 = Pengaduan::query()->where('category_id', 2)->count();
+        $kate3 = Pengaduan::query()->where('category_id', 3)->count();
+        $kate4 = Pengaduan::query()->where('category_id', 4)->count();
+        $kate5 = Pengaduan::query()->where('category_id', 5)->count();
+
+        $all = Pengaduan::all()->count();
+
+        $data = [
+            'satu' => $satu,
+            'dua' => $dua,
+            'tiga' => $tiga,
+            'bulan1' => $bulan1,
+            'bulan2' => $bulan2,
+            'bulan3' => $bulan3,
+            'kate1' => $kate1,
+            'kate2' => $kate2,
+            'kate3' => $kate3,
+            'kate4' => $kate4,
+            'kate5' => $kate5,
+            'all' => $all,
+        ];
+
+        return view('Laporan.Print', $data);
+    }
 }

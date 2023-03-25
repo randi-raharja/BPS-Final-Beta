@@ -15,5 +15,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui", 'tailwindcss-print-styles')],
+
+  variants: {
+    margin: ['print'], // add the print variant to enable where needed
+    display: ['print']
+  }
 }
