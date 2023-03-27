@@ -76,6 +76,7 @@ Route::middleware('auth')->name('users.')->prefix('users')->group(function () {
     Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
     Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
     Route::put('/{id}', [UserController::class, 'update'])->name('update');
+    Route::get('/export', [UserController::class, 'export'])->name('export');
 });
 
 // Pengaduan

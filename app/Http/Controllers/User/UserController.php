@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\constants\Permissions;
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -101,5 +103,13 @@ class UserController extends Controller
         $user->save();
 
         return to_route('users.index')->with('status', 'User updated');
+    }
+
+    public function export()
+    {
+        if (!Gate::allows(Permissions::EXPORT_IKM)) {
+            return abort(403, 'RESTRICTED AREA');
+        }
+        return Excel::download(new UsersExport, date('Y-m-d') . '-Pegawai.xlsx');
     }
 }

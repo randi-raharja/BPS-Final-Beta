@@ -5,12 +5,18 @@
                 <h2 class="text-xl font-bold text-gray-700 hover:text-gray-600">
                     Users</h2>
             </div>
-            <div class="flex justify-between">
-                @can(App\Constants\Permissions::CREATE_USER)
-                    <a href="{{ route('users.create') }}" role="button"
-                        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Tambah
-                        User</a>
-                @endcan
+            <div class="md:flex justify-between">
+                <div>
+                    @can(App\Constants\Permissions::CREATE_USER)
+                        <a href="{{ route('users.create') }}" role="button"
+                            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Tambah
+                            User</a>
+                    @endcan
+                    @can(App\Constants\Permissions::CREATE_USER)
+                        <a role="button" class="btn btn-success text-white mb-2" href="{{ route('users.export') }}">Export<i
+                                class="fa-solid fa-file-export pl-2"></i></a>
+                    @endcan
+                </div>
                 <div>
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative">

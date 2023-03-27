@@ -18,7 +18,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $role = Role::where('name', 'default')->first();
+        $role = Role::where('name', 'pelapor')->first();
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmailDomain(),
